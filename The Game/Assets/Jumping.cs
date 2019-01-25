@@ -13,7 +13,7 @@ public class Jumping : MonoBehaviour {
 	public float decreaseMod = 1.0f;
 	public float increaseMod = 1.0f;
 	public float speedMod = 0.2f;
-
+	public float xVelocity = 0.0f;
 	private bool isFalling;
 
 	// Use this for initialization
@@ -24,7 +24,7 @@ public class Jumping : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (Input.GetKey (KeyCode.Space) && fuel > 0) {
+		if ( (Input.GetKey (KeyCode.W) || Input.GetKey (KeyCode.Space)) && fuel > 0) {
 			rb.AddForce (Vector2.up * jumpHeight);
 			isFalling = true;
 			fuel -= decreaseMod;
@@ -33,6 +33,18 @@ public class Jumping : MonoBehaviour {
 		if (!isFalling && fuel<100.0f) {
 			fuel += increaseMod;
 			fuelIndicator.text = "Fuel: " + fuel;
+		}
+		if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)){
+		    if (rb.isTouchingLayers && xVelocity < 15) {
+		        xVelocity += increaseMod * 2;
+		    } else if (xVelocity < 15) {
+		        xVelocity += increaseMod;
+		    }
+            if (Input.GetKey(KeyCode.A)) {
+                rb.AddForce(Vector2.right * xVelocity)
+            } else if (Input.GetKey(KeyCode.A)) {
+                rb.AddForce(Vector2.left * xVelocity)
+            }
 		}
 	}
 
