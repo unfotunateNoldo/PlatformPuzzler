@@ -8,7 +8,7 @@ public class Jumping : MonoBehaviour {
 	public Text fuelIndicator;
 	public Rigidbody2D rb;
 	public BoxCollider2D bc;
-	public int jumpHeight = 10;
+    public int jumpHeight = 10;
 	public float fuel = 100.0f;
 	public float decreaseMod = 1.0f;
 	public float increaseMod = 1.0f;
@@ -30,15 +30,12 @@ public class Jumping : MonoBehaviour {
 			fuel -= decreaseMod;
 			fuelIndicator.text = "Fuel: " + fuel;
 		}
-		if (!isFalling && fuel<100.0f) {
+		if (fuel < 100.0f && !isFalling) {
 			fuel += increaseMod;
 			fuelIndicator.text = "Fuel: " + fuel;
 		}
-	}
-
-	void OnCollisionEnter2D(Collision2D check){
-		if (Physics2D.Raycast(rb.position, Vector2.down).distance < bc.bounds.extents.y - transform.position.y){
-			isFalling = false;
-		}
-	}
+        transform.position += (Vector3.right * Input.GetAxis("Horizontal") * speedMod);
+        if (Physics2D.Raycast(transform.position, Vector2.down, bc.bounds.extents.y+0.1f).collider != null)
+            isFalling = false;
+    }
 }
