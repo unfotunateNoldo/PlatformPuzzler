@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class Jumping : MonoBehaviour {
 
@@ -24,11 +25,18 @@ public class Jumping : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if ( (Input.GetKey (KeyCode.W) || Input.GetKey (KeyCode.Space)) && fuel > 0) {
-			rb.AddForce (Vector2.up * jumpHeight);
-			isFalling = true;
-			fuel -= decreaseMod;
-			fuelIndicator.text = "Fuel: " + fuel;
+		if ( (Input.GetKey (KeyCode.W) || Input.GetKey (KeyCode.Space))) {
+			if (!isFalling) {
+                		int jumpForce = (int) Math.Pow(jumpHeight, 1.3);
+                		rb.AddForce(Vector2.up * jumpForce);
+           		 }
+			
+			if (fuel > 0) {
+				rb.AddForce (Vector2.up * jumpHeight);
+				isFalling = true;
+				fuel -= decreaseMod;
+				fuelIndicator.text = "Fuel: " + fuel;
+			}
 		}
 		if (!isFalling && fuel<100.0f) {
 			fuel += increaseMod;
