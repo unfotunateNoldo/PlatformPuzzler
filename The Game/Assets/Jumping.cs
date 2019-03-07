@@ -25,7 +25,13 @@ public class Jumping : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		if (Input.GetKey (KeyCode.Space) && fuel > 0) {
-			rb.AddForce (Vector2.up * jumpHeight);
+            if(GravSwitch.getGrav()) {
+                rb.AddForce(Vector2.up * jumpHeight);
+            }
+            else {
+                rb.AddForce(Vector2.down * jumpHeight);
+            }
+
 			isFalling = true;
 			fuel -= decreaseMod;
 			fuelIndicator.text = "Fuel: " + fuel;
