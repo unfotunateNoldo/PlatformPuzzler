@@ -16,7 +16,7 @@ public class Jumping : MonoBehaviour {
 
 	private bool isFalling;
 
-	// Use this for initialization
+	// Intitialize component references
 	void Awake () {
 		rb = GetComponent<Rigidbody2D> ();
 		bc = GetComponent<BoxCollider2D> ();
@@ -24,7 +24,10 @@ public class Jumping : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (Input.GetKey (KeyCode.Space) && fuel > 0) {
+		//handle rocket boost
+        if (Input.GetKey (KeyCode.Space) && fuel > 0) {
+
+            //add correct force direction based on gravity position
             if(GravSwitch.getGrav()) {
                 rb.AddForce(Vector2.up * jumpHeight);
             }
