@@ -22,12 +22,10 @@ GameObject:
   - component: {fileID: 212012665838689132}
   - component: {fileID: 61859938121200102}
   - component: {fileID: 50907321919535992}
-  - component: {fileID: 114512177558508252}
-  - component: {fileID: 114285099232206192}
-  - component: {fileID: 114320169600943120}
+  - component: {fileID: 114353553258873120}
   m_Layer: 0
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,13 +36,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1348944905709976}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.015969051, y: 0, z: 0, w: 0.9998725}
+  m_LocalPosition: {x: -0.528, y: 1.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.83, y: 0, z: 0}
 --- !u!50 &50907321919535992
 Rigidbody2D:
   serializedVersion: 4
@@ -64,7 +62,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &61859938121200102
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -90,30 +88,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114285099232206192
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1348944905709976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebfa0b7cfb42827459b897d61f8c6d90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holdingKey: 0
---- !u!114 &114320169600943120
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1348944905709976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82a34d8c1baf34db6bc962f83a30dc84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114512177558508252
+--- !u!114 &114353553258873120
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,8 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd110d79fbcb49646820de685429e49c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuelIndicator: {fileID: 114410571544111232, guid: ad3b8440592f840b7821e57b70f03db2,
-    type: 2}
+  fuelIndicator: {fileID: 0}
   rb: {fileID: 0}
   bc: {fileID: 0}
   jumpHeight: 10

@@ -1,35 +1,52 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GravSwitch : MonoBehaviour {
-    Rigidbody2D rb;
-    static bool gravNorm;
-    // Use this for initialization
-    void Start () {
-        rb = GetComponent<Rigidbody2D>();
-        gravNorm = true;
+    public static bool changingGrav = false;
+    public static float changeTime = 0.7f;
+
+    private static float invChangeTime;
+    public static readonly Vector2 normalGrav = new Vector2(0, -9.8f);
+    public Vector2 dest;
+    private Vector2 currentDest;
+
+    public Camera refCamera;
+    public GameObject player;
+
+    void Start (){
+        currentDest = dest;
+        refCamera = Camera.main;
+        player = GameObject.FindGameObjectWithTag("Player");
+        invChangeTime = 1 / changeTime;
     }
-	
+
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            if (gravNorm)
-            {
-                rb.gravityScale = (float)-1.0;
-                gravNorm = false;
-            }
-            else {
-                rb.gravityScale = (float)1.0;
-                gravNorm = true;
-
-            }
+        if (Input.GetKeyDown(KeyCode.G) && !changingGrav){
+            changingGrav = true;
+            StartCoroutine("changeGrav", 0.0f);
         }
-
     }
-    public static bool getGrav()
-    {
-        return gravNorm;
+
+    IEnumerator changeGrav() {
+        float rotation = Vector2.Angle(currentDest, Physics2D.gravity);
+        float remainingRotation = rotation;
+        while (remainingRotation > float.Epsilon){
+            float newRotation = rotation * invChangeTime * Time.deltaTime;
+            player.transform.Rotate(Vector3.forward, newRotation);
+            refCamera.transform.Rotate(Vector3.forward, newRotation);
+            remainingRotation -= newRotation;
+            yield return null;
+        }
+        player.transform.Rotate(Vector3.forward, remainingRotation);
+        refCamera.transform.Rotate(Vector3.forward, remainingRotation);
+        Physics2D.gravity = currentDest;
+        changingGrav = false;
+        currentDest = currentDest != normalGrav ? normalGrav : dest;
+        yield return null;
+    }
+
+    public bool getNormalGrav(){
+        return dest == normalGrav;
     }
 }
