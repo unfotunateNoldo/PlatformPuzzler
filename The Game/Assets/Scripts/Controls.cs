@@ -48,7 +48,7 @@ public class Controls : MonoBehaviour {
         if (GravSwitch.changingGrav)
             return;
         if (Input.GetKey (KeyCode.Space) && fuel > 0) {
-            rb.AddForce(new Vector2(-Physics.gravity.x, -Physics.gravity.y) * jumpHeight * Time.deltaTime);
+            rb.AddForce(new Vector2(-Physics2D.gravity.x, -Physics2D.gravity.y) * jumpHeight * Time.fixedDeltaTime * 10);
 
 			isFalling = true;
 			fuel -= decreaseMod;
@@ -58,8 +58,8 @@ public class Controls : MonoBehaviour {
 			fuel = Mathf.Clamp(fuel + increaseMod, 0, 100);
 			fuelIndicator.text = "Fuel: " + fuel;
 		}
-        transform.position += (Vector3.right * Input.GetAxis("Horizontal") * speedMod);
-        if (Physics2D.Raycast(transform.position, Vector2.down, bc.bounds.extents.y+0.1f).collider != null)
+        transform.position += (Vector3.right * Input.GetAxis("Horizontal") * speedMod * Time.fixedDeltaTime);
+        if (Physics2D.Raycast(transform.position, Physics2D.gravity, bc.bounds.extents.y+0.1f).collider != null)
             isFalling = false;
     }
 }

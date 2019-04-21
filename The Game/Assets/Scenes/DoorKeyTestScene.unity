@@ -113,47 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &136569366 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1799708294572956, guid: 26dc068fa5445444492ee672d020ab50,
-    type: 2}
-  m_PrefabInternal: {fileID: 882192835}
---- !u!114 &136569367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 136569366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d44c1770786e128448edbab15d5468bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!61 &136569370
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 136569366}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.63}
-    newSize: {x: 0.32, y: 0.63}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.63}
-  m_EdgeRadius: 0
 --- !u!1 &158055635
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,10 +444,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1799708294572956, guid: 26dc068fa5445444492ee672d020ab50, type: 2}
-      propertyPath: m_TagString
-      value: Door
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26dc068fa5445444492ee672d020ab50, type: 2}
   m_IsPrefabAsset: 0
@@ -764,8 +719,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 50605755257171892, guid: 44367a26e9ed5f647948c6217dd6dc65, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44367a26e9ed5f647948c6217dd6dc65, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1831417969
@@ -894,30 +848,6 @@ Prefab:
       propertyPath: fuelIndicator
       value: 
       objectReference: {fileID: 1227165009}
-    - target: {fileID: 61859938121200102, guid: 79d28f0dee6cc884d80d15dfaf734bfb,
-        type: 2}
-      propertyPath: m_Offset.x
-      value: -0.004114896
-      objectReference: {fileID: 0}
-    - target: {fileID: 61859938121200102, guid: 79d28f0dee6cc884d80d15dfaf734bfb,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 0.67903656
-      objectReference: {fileID: 0}
-    - target: {fileID: 61859938121200102, guid: 79d28f0dee6cc884d80d15dfaf734bfb,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: -0.004115224
-      objectReference: {fileID: 0}
-    - target: {fileID: 61859938121200102, guid: 79d28f0dee6cc884d80d15dfaf734bfb,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 0.99176955
-      objectReference: {fileID: 0}
-    - target: {fileID: 4563737804733906, guid: 79d28f0dee6cc884d80d15dfaf734bfb, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79d28f0dee6cc884d80d15dfaf734bfb, type: 2}
   m_IsPrefabAsset: 0

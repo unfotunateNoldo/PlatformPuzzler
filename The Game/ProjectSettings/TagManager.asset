@@ -17,11 +17,11 @@ TagManager:
   - 
   - 
   - 
+  - Background
   - 
+  - SceneObjects
   - 
-  - 
-  - 
-  - 
+  - Player
   - 
   - 
   - 
@@ -42,4 +42,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 4279104515
+    locked: 0
+  - name: SceneObjects
+    uniqueID: 2196123175
+    locked: 0
+  - name: Player
+    uniqueID: 942407255
     locked: 0

@@ -6,7 +6,7 @@ public class GravSwitch : MonoBehaviour {
     public static float changeTime = 0.7f;
 
     private static float invChangeTime;
-    public static readonly Vector2 normalGrav = new Vector2(0, -9.8f);
+    public static readonly Vector2 normalGrav = new Vector2(0, -9.81f);
     public Vector2 dest;
     private Vector2 currentDest;
 
