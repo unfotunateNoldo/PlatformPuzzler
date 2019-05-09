@@ -1,0 +1,4 @@
+Finish segmenting player scripts
+implement door animation
+make fuel prefab work well
+finish implementing Jumping

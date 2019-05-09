@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GravSwitch : MonoBehaviour {
@@ -6,7 +8,6 @@ public class GravSwitch : MonoBehaviour {
     public static float changeTime = 0.7f;
 
     private static float invChangeTime;
-    public static readonly Vector2 normalGrav = new Vector2(0, -9.81f);
     public Vector2 dest;
     private Vector2 currentDest;
 
@@ -29,6 +30,16 @@ public class GravSwitch : MonoBehaviour {
     }
 
     IEnumerator changeGrav() {
+        Rigidbody2D[] freeze = FindObjectsOfType<Rigidbody2D>();
+        RigidbodyConstraints2D[] freezeValues = new RigidbodyConstraints2D[freeze.Length];
+        for (int i = 0; i < freeze.Length; i++) {
+            Rigidbody2D r = freeze[i];
+            freezeValues[i] = r.constraints;
+            if (r.constraints!=RigidbodyConstraints2D.FreezePosition) {
+                r.constraints = RigidbodyConstraints2D.FreezePosition;
+            }
+        }
+
         float rotation = Vector2.Angle(currentDest, Physics2D.gravity);
         float remainingRotation = rotation;
         while (remainingRotation > float.Epsilon){
@@ -40,13 +51,19 @@ public class GravSwitch : MonoBehaviour {
         }
         player.transform.Rotate(Vector3.forward, remainingRotation);
         refCamera.transform.Rotate(Vector3.forward, remainingRotation);
+
+        for(int i=0; i<freeze.Length; i++) {
+            freeze[i].constraints = freezeValues[i];
+        }
+
         Physics2D.gravity = currentDest;
         changingGrav = false;
-        currentDest = currentDest != normalGrav ? normalGrav : dest;
-        yield return null;
+        currentDest = currentDest != GameMaster.normalGrav ? GameMaster.normalGrav : dest;
+        GameMaster.upDirection = (-1)*Physics2D.gravity;
+        yield break;
     }
 
     public bool getNormalGrav(){
-        return dest == normalGrav;
+        return dest == GameMaster.normalGrav;
     }
 }

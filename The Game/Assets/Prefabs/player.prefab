@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 61859938121200102}
   - component: {fileID: 50907321919535992}
   - component: {fileID: 114353553258873120}
+  - component: {fileID: 114478501253525150}
+  - component: {fileID: 114713047896148566}
   m_Layer: 14
   m_Name: player
   m_TagString: Player
@@ -99,14 +101,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd110d79fbcb49646820de685429e49c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuelIndicator: {fileID: 0}
+  speedMod: 2
+  jumpFrameCount: 100
+  jumpHeight: 9
   rb: {fileID: 0}
   bc: {fileID: 0}
-  jumpHeight: 9
+  rocket: {fileID: 0}
+  inventory: {fileID: 0}
+  keys: 0
+  isFalling: 0
+--- !u!114 &114478501253525150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1348944905709976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814aa156c14adf64797af8ad3a2d6b57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rocketBoost: 10
   fuel: 100
   decreaseMod: 1
   increaseMod: 1
-  speedMod: 2
+  fuelIndicatorPrefab: {fileID: 114410571544111232, guid: ad3b8440592f840b7821e57b70f03db2,
+    type: 2}
+--- !u!114 &114713047896148566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1348944905709976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93a2ed50fee7cf447ab765f09baa239d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212012665838689132
 SpriteRenderer:
   m_ObjectHideFlags: 1
