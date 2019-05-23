@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
@@ -10,13 +11,14 @@ public class Player : MonoBehaviour {
 
     public int jumpFrameCount = 100;
     public float jumpHeight = 1.0f;
+    private bool jumping = false;
 
     public Rigidbody2D rb;
     public BoxCollider2D bc;
     public RocketBoost rocket;
-    public Inventory inventory;
+    public List<Equipment> equipment;
 
-    public int keys = 0;
+    private int keys = 0;
 
     public bool isFalling;
 
@@ -48,9 +50,7 @@ public class Player : MonoBehaviour {
         rb = GetComponent<Rigidbody2D> ();
 		bc = GetComponent<BoxCollider2D> ();
         rocket = GetComponent<RocketBoost>();
-        inventory = GetComponent<Inventory>();
-        if (inventory == null)
-            throw new InvalidOperationException();
+        equipment = new List<Equipment>(GetComponents<Equipment>());
 	}
 	
 	// Update is called once per frame
@@ -59,21 +59,31 @@ public class Player : MonoBehaviour {
         if (GravSwitch.changingGrav)
             return;
         if(Input.GetKeyDown(KeyCode.Space) && !isFalling){
-            //StartCoroutine("Jump");
+            isFalling = true;
+            StartCoroutine("Jump");
         }
-        if(Input.GetKey(KeyCode.Space) && rocket.enabled) {
+        if(Input.GetKey(KeyCode.Space) &&!jumping && rocket.enabled && isFalling) {
+            Debug.Log("ascendere");
             rocket.boost();
         }
         transform.position += (Vector3) (GameMaster.rightDirection * Input.GetAxis("Horizontal") * speedMod * Time.fixedDeltaTime);
-        if (Physics2D.Raycast(transform.position, Physics2D.gravity, bc.bounds.extents.y+float.Epsilon).collider != null)
+        if (Physics2D.Raycast(transform.position, Physics2D.gravity, bc.bounds.extents.y+0.1f).collider != null)
             isFalling = false;
     }
 
-    //Jump is unimplemented: On complete implementation, uncomment the line "StartCoroutine("Jump")" in the FixedUpdate function
     IEnumerator Jump(){
+        jumping = true;
+        rb.velocity = GameMaster.upDirection * jumpHeight;
         for(int i=0; i<jumpFrameCount; i++){
-
+            if (Input.GetKeyUp(KeyCode.Space)) {
+                Debug.Log("done jumping");
+                break;
+            } else {
+                rb.velocity = GameMaster.upDirection * jumpHeight;
+            }
+            yield return null;
         }
+        jumping = false;
         yield break;
     }
 }

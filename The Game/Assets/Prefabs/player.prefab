@@ -102,8 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMod: 2
-  jumpFrameCount: 100
-  jumpHeight: 9
+  jumpFrameCount: 20
+  jumpHeight: 3
   rb: {fileID: 0}
   bc: {fileID: 0}
   rocket: {fileID: 0}

@@ -1,14 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DoorLock : MonoBehaviour {
 
-    bool locked = true;
+    private bool locked = true;
 
-    public void unlock()
-    {
+    public void unlock(){
         locked = false;
+        GetComponent<Animator>().SetBool("Unlocked", true);
     }
 
     public void OnTriggerEnter2D(Collider2D c){
@@ -16,7 +14,8 @@ public class DoorLock : MonoBehaviour {
             GetComponent<Animator>().SetTrigger("openTrigger");
     }
     public void OnTriggerExit2D(Collider2D collision){
-        if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("DoorOpen"))
+        if (collision.gameObject.tag == "Player") {
             GetComponent<Animator>().SetTrigger("closeTrigger");
+        }
     }
 }

@@ -915,12 +915,19 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114353553258873120, guid: 79d28f0dee6cc884d80d15dfaf734bfb,
+    - target: {fileID: 114478501253525150, guid: 79d28f0dee6cc884d80d15dfaf734bfb,
         type: 2}
-      propertyPath: fuelIndicator
+      propertyPath: fuelIndicatorPrefab
       value: 
+      objectReference: {fileID: 114410571544111232, guid: ad3b8440592f840b7821e57b70f03db2,
+        type: 2}
+    - target: {fileID: 114478501253525150, guid: 79d28f0dee6cc884d80d15dfaf734bfb,
+        type: 2}
+      propertyPath: rocketBoost
+      value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114713047896148566, guid: 79d28f0dee6cc884d80d15dfaf734bfb, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 79d28f0dee6cc884d80d15dfaf734bfb, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &1949174455
@@ -1014,7 +1021,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.20025526, g: 0.19215688, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
