@@ -11,12 +11,11 @@ public class Player : MonoBehaviour {
 
     public int jumpFrameCount = 100;
     public float jumpHeight = 1.0f;
-    private bool jumping = false;
 
     public Rigidbody2D rb;
     public BoxCollider2D bc;
-    public RocketBoost rocket;
-    public List<Equipment> equipment;
+    //public RocketBoost rocket;
+    //public List<Equipment> equipment;
 
     private int keys = 0;
 
@@ -49,22 +48,16 @@ public class Player : MonoBehaviour {
         DontDestroyOnLoad(player);
         rb = GetComponent<Rigidbody2D> ();
 		bc = GetComponent<BoxCollider2D> ();
-        rocket = GetComponent<RocketBoost>();
-        equipment = new List<Equipment>(GetComponents<Equipment>());
+        //rocket = GetComponent<RocketBoost>();
+        //equipment = new List<Equipment>(GetComponents<Equipment>());
 	}
-	
-	// Update is called once per frame
+
 	void FixedUpdate () {
-        //handle rocket boost
         if (GravSwitch.changingGrav)
             return;
         if(Input.GetKeyDown(KeyCode.Space) && !isFalling){
             isFalling = true;
             StartCoroutine("Jump");
-        }
-        if(Input.GetKey(KeyCode.Space) &&!jumping && rocket.enabled && isFalling) {
-            Debug.Log("ascendere");
-            rocket.boost();
         }
         transform.position += (Vector3) (GameMaster.rightDirection * Input.GetAxis("Horizontal") * speedMod * Time.fixedDeltaTime);
         if (Physics2D.Raycast(transform.position, Physics2D.gravity, bc.bounds.extents.y+0.1f).collider != null)
@@ -72,18 +65,15 @@ public class Player : MonoBehaviour {
     }
 
     IEnumerator Jump(){
-        jumping = true;
         rb.velocity = GameMaster.upDirection * jumpHeight;
         for(int i=0; i<jumpFrameCount; i++){
-            if (Input.GetKeyUp(KeyCode.Space)) {
-                Debug.Log("done jumping");
-                break;
-            } else {
+            if (Input.GetKey(KeyCode.Space)) {
                 rb.velocity = GameMaster.upDirection * jumpHeight;
+            } else {
+                break;
             }
             yield return null;
         }
-        jumping = false;
         yield break;
     }
 }

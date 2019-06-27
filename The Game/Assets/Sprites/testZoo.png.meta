@@ -1,61 +1,46 @@
 fileFormatVersion: 2
-guid: f7b1694a5291b994e83de60e376bf86d
+guid: e09ae3c93bc449d4289a451a7bf22fc7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 21300000
-    second: Door_1_anim_0
+      213: -4381055780073507563
+    second: Coral_Eye
   - first:
-      213: 21300002
-    second: Door_1_anim_1
+      213: -1261239207637068976
+    second: Toothy_Shroom
   - first:
-      213: 21300004
-    second: Door_1_anim_2
+      213: -6075904685140023148
+    second: Kelp_Eye
   - first:
-      213: 21300006
-    second: Door_1_anim_3
+      213: 6682069766478597757
+    second: Bird
   - first:
-      213: 21300008
-    second: Door_1_anim_4
+      213: 7236960775549954640
+    second: Big_Face
   - first:
-      213: 21300010
-    second: Door_1_anim_5
+      213: -7005111393053284712
+    second: Small_Face
   - first:
-      213: 21300012
-    second: Door_1_anim_6
+      213: -880330927508412169
+    second: Yeller
   - first:
-      213: 21300014
-    second: Door_1_anim_7
+      213: 731011785589671113
+    second: Cat_Cyclops
   - first:
-      213: 21300016
-    second: Door_1_anim_8
+      213: -1770069677012202227
+    second: Demure_Crab
   - first:
-      213: 21300018
-    second: Door_1_anim_9
+      213: -4667987963746683078
+    second: Faced_Frog
   - first:
-      213: 21300020
-    second: Door_1_anim_10
+      213: -951381838071490448
+    second: Blue_Slime
   - first:
-      213: 21300022
-    second: Door_1_anim_11
+      213: 581717583342578856
+    second: Vine_Slime
   - first:
-      213: 21300024
-    second: Door_1_anim_12
-  - first:
-      213: 21300026
-    second: Door_1_anim_13
-  - first:
-      213: 21300028
-    second: Door_1_anim_14
-  - first:
-      213: 21300030
-    second: Door_1_anim_15
-  - first:
-      213: 21300032
-    second: Door_1_anim_16
-  - first:
-      213: 21300034
-    second: Door_1_anim_17
+      213: -5322691903070675418
+    second: Dark_Lizard
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -137,30 +122,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -173,28 +134,28 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: WebGL
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Door_1_anim_0
+      name: Coral_Eye
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 59
+        y: 204
         width: 32
-        height: 64
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,20 +163,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4846120d0902e724fb848f04fa2d910e
-      internalID: 21300000
+      spriteID: 834f95647ce988c4385e178a3a545f73
+      internalID: -4381055780073507563
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Door_1_anim_1
+      name: Toothy_Shroom
       rect:
         serializedVersion: 2
-        x: 33
-        y: 0
+        x: 90
+        y: 171
         width: 32
-        height: 64
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,20 +184,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72ae5a6f11cec3d40841731a826caf00
-      internalID: 21300002
+      spriteID: 8651bfdda9af753498cb1d9f806782f9
+      internalID: -1261239207637068976
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Door_1_anim_2
+      name: Kelp_Eye
       rect:
         serializedVersion: 2
-        x: 66
-        y: 0
+        x: 27
+        y: 141
         width: 32
-        height: 64
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,19 +205,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67cd33613353bd24d8cf32e5ccd2b8a1
-      internalID: 21300004
+      spriteID: 36543801fb3415947a1340e2527e9f88
+      internalID: -6075904685140023148
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Door_1_anim_3
+      name: Bird
       rect:
         serializedVersion: 2
-        x: 99
-        y: 0
-        width: 32
+        x: 124
+        y: 173
+        width: 64
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -265,41 +226,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 986ebb001d5b67640bd06da28ba08f8d
-      internalID: 21300006
+      spriteID: d25be3f2abf23414ba456fcf1c65566b
+      internalID: 6682069766478597757
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Door_1_anim_4
+      name: Big_Face
       rect:
         serializedVersion: 2
-        x: 132
-        y: 0
-        width: 32
+        x: 188
+        y: 109
+        width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0021f18a3d41e14418dd0cc7f45aaf5a
-      internalID: 21300008
+      spriteID: 013cd66ca4f7ebe46958bac0bb57e70a
+      internalID: 7236960775549954640
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Door_1_anim_5
+      name: Small_Face
       rect:
         serializedVersion: 2
-        x: 165
-        y: 0
+        x: 59
+        y: 109
         width: 32
-        height: 64
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -307,19 +268,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c1b5c07044c9ec4ba08a8feb5141895
-      internalID: 21300010
+      spriteID: a95abb271942bbb47809148233457a0e
+      internalID: -7005111393053284712
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Door_1_anim_6
+      name: Yeller
       rect:
         serializedVersion: 2
-        x: 198
-        y: 0
-        width: 32
+        x: 124
+        y: 109
+        width: 64
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -328,18 +289,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e774eb28df8bfe4db849d134838ed56
-      internalID: 21300012
+      spriteID: aa4a832d97433b14382fb357a7ad8ca4
+      internalID: -880330927508412169
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Door_1_anim_7
+      name: Cat_Cyclops
       rect:
         serializedVersion: 2
-        x: 231
-        y: 0
+        x: 188
+        y: 45
         width: 32
         height: 64
       alignment: 0
@@ -349,20 +310,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da741e2f6784640468eebcc734da440e
-      internalID: 21300014
+      spriteID: 43ca29997c46eb746be4bf7080296025
+      internalID: 731011785589671113
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Door_1_anim_8
+      name: Demure_Crab
       rect:
         serializedVersion: 2
-        x: 264
-        y: 0
-        width: 32
-        height: 64
+        x: 26
+        y: 77
+        width: 64
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -370,20 +331,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da79c4461d3c72142818270368fd739f
-      internalID: 21300016
+      spriteID: 354eefe472aa3b84bb06abee27739454
+      internalID: -1770069677012202227
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Door_1_anim_9
+      name: Faced_Frog
       rect:
         serializedVersion: 2
-        x: 297
-        y: 0
+        x: 59
+        y: 45
         width: 32
-        height: 64
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -391,20 +352,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32f92079d57bfde42b2adf860e0c346e
-      internalID: 21300018
+      spriteID: e008c39f62d4e564ca4ee8fb64252b31
+      internalID: -4667987963746683078
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Door_1_anim_10
+      name: Blue_Slime
       rect:
         serializedVersion: 2
-        x: 330
-        y: 0
-        width: 32
-        height: 64
+        x: 124
+        y: 45
+        width: 64
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -412,20 +373,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af614c980ca04564f88c00bf7534e5c1
-      internalID: 21300020
+      spriteID: 2729f74308b8dfe4f86dc53b047e35ce
+      internalID: -951381838071490448
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Door_1_anim_11
+      name: Vine_Slime
       rect:
         serializedVersion: 2
-        x: 363
-        y: 0
+        x: 27
+        y: 12
         width: 32
-        height: 64
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -433,20 +394,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e7298b05e046c44ca173b256478bfd3
-      internalID: 21300022
+      spriteID: e66996345aa98a14494506293d366491
+      internalID: 581717583342578856
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Door_1_anim_12
+      name: Dark_Lizard
       rect:
         serializedVersion: 2
-        x: 396
-        y: 0
-        width: 32
-        height: 64
+        x: 124
+        y: 11
+        width: 64
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -454,113 +415,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d0921bedbd25624a88e190ea9549ef9
-      internalID: 21300024
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Door_1_anim_13
-      rect:
-        serializedVersion: 2
-        x: 429
-        y: 0
-        width: 32
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e957418bccc1c3347a18017fe9a376ff
-      internalID: 21300026
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Door_1_anim_14
-      rect:
-        serializedVersion: 2
-        x: 462
-        y: 0
-        width: 32
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0bb400f891d0ab341bb5365a007facb1
-      internalID: 21300028
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Door_1_anim_15
-      rect:
-        serializedVersion: 2
-        x: 495
-        y: 0
-        width: 32
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ebf0ff35c553ffe45a1df1ef3c2355a9
-      internalID: 21300030
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Door_1_anim_16
-      rect:
-        serializedVersion: 2
-        x: 528
-        y: 0
-        width: 32
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ef34675df01e95345ba54f83c85531a5
-      internalID: 21300032
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Door_1_anim_17
-      rect:
-        serializedVersion: 2
-        x: 561
-        y: 0
-        width: 32
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9106f0f13ff5aea4ba82391e13a79245
-      internalID: 21300034
+      spriteID: a59356bde88c7674cad341a845b6054f
+      internalID: -5322691903070675418
       vertices: []
       indices: 
       edges: []
@@ -568,7 +424,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: aa52d62114bbf8a44bfe4bccd5d4c231
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

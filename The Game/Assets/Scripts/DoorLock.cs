@@ -13,8 +13,8 @@ public class DoorLock : MonoBehaviour {
         if (c.gameObject.tag == "Player" && !locked)
             GetComponent<Animator>().SetTrigger("openTrigger");
     }
-    public void OnTriggerExit2D(Collider2D collision){
-        if (collision.gameObject.tag == "Player") {
+    public void OnTriggerExit2D(Collider2D c){
+        if (c.gameObject.tag == "Player") {
             GetComponent<Animator>().SetTrigger("closeTrigger");
         }
     }
