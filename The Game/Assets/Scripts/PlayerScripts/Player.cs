@@ -11,6 +11,11 @@ public class Player : MonoBehaviour {
 
     public int jumpFrameCount = 100;
     public float jumpHeight = 1.0f;
+    
+    public int healthPoints = 100;
+    public bool isInvincible = false;
+    public int invincibilityFrames = 100;
+    public bool isAlive = true;
 
     public Rigidbody2D rb;
     public BoxCollider2D bc;
@@ -32,6 +37,18 @@ public class Player : MonoBehaviour {
                 if (keys > 0){
                     keys--;
                     collided.GetComponent<DoorLock>().unlock();
+                }
+                break;
+            case "Enemy":
+                if(!isInvincible) {
+                    StartCoroutine("invincible");
+                    healthPoints-=20;
+                    Debug.Log("Player lost health");
+                }
+                if(healthPoints <= 0) {
+                   Debug.Log("player is dead, resetting health");
+                   healthPoints = 100;
+                   isInvincible = false;
                 }
                 break;
             default:
@@ -75,5 +92,14 @@ public class Player : MonoBehaviour {
             yield return null;
         }
         yield break;
+    }
+    
+    IEnumerator invincible(){
+    isInvincible = true;
+        for(int i = invincibilityFrames; i>0; i++){
+            i--;
+            yield return null;
+        }
+    isInvincible = false;
     }
 }
