@@ -2,6 +2,7 @@
 
 public class GameMaster : MonoBehaviour {
     private static Vector2 UpDirection;
+
     public static Vector2 upDirection {
         get {
             return UpDirection;
@@ -25,6 +26,7 @@ public class GameMaster : MonoBehaviour {
             return (-1) * upDirection;
         }
     }
+
     public static GameMaster gm = null;
     public static readonly Vector2 normalGrav = new Vector2(0, -9.81f);
 
@@ -39,11 +41,8 @@ public class GameMaster : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Y)) {
-            Debug.Log("up: " + upDirection);
-            Debug.Log("down: " + downDirection);
-            Debug.Log("right: " + rightDirection);
-            Debug.Log("left: " + leftDirection);
+        if (Input.GetKeyDown(KeyCode.F2)) {
+            Time.timeScale = Time.timeScale == 1 ? 0.03f : 1;
         }
     }
 }
