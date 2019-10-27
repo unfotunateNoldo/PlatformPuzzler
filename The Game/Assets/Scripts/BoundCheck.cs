@@ -18,4 +18,8 @@ public class BoundCheck : MonoBehaviour {
             collidingWithWall = false;
         }
     }
+
+    private void Update() {
+        // triggered = false;
+    }
 }

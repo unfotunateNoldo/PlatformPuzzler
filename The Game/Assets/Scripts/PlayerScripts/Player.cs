@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
@@ -31,26 +32,25 @@ public class Player : MonoBehaviour {
 
     public CameraBehavior cameraBehavior;
 
-    private int keys = 0;
-
     public bool isFalling;
 
-    private void OnTriggerEnter2D(Collider2D c){
-        GameObject collided = c.gameObject;
-        switch (collided.tag){
+    private void OnTriggerEnter2D(Collider2D other) {
+        GameObject collided = other.gameObject;
+        switch (collided.tag) {
             case "Key":
-                keys++;
-                Destroy(collided);
+                if (Inventory.instance.AddItem(collided.tag, collided)) {
+                    Destroy(collided);
+                }
                 break;
             case "Door":
-                if (keys > 0){
-                    keys--;
-                    collided.GetComponent<DoorLock>().unlock();
+                List<Sprite> items = Inventory.instance.GetItems("Key");
+                if (items != null && items.Count > 0) {
+                    if (collided.GetComponent<DoorLock>().unlock())
+                        Inventory.instance.RemoveItem("Key");
                 }
                 break;
         }
     }
-
     private void OnCollisionEnter2D(Collision2D c) {
         GameObject collided = c.gameObject;
         switch (collided.tag) {
