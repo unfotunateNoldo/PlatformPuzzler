@@ -14,6 +14,8 @@ public class GravSwitch : MonoBehaviour {
     public Camera refCamera;
     public GameObject player;
 
+    public float pdist;
+
     void Start (){
         currentDest = dest;
         refCamera = Camera.main;
@@ -21,9 +23,14 @@ public class GravSwitch : MonoBehaviour {
         invChangeTime = 1 / changeTime;
     }
 
+    float Dist(float x1, float y1, float x2, float y2)
+    {
+        return Mathf.Sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y2));
+    }
+
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.G) && !changingGrav){
+        if (Dist(player.transform.position.x, player.transform.position.y, transform.position.x, transform.position.y) < pdist &&  Input.GetKeyDown(KeyCode.G) && !changingGrav){
             changingGrav = true;
             StartCoroutine("changeGrav", 0.0f);
         }
@@ -39,7 +46,7 @@ public class GravSwitch : MonoBehaviour {
                 r.constraints = RigidbodyConstraints2D.FreezePosition;
             }
         }
-
+        player.GetComponent<EdgeCollider2D>().enabled = false;
         float rotation = Vector2.Angle(currentDest, Physics2D.gravity);
         float remainingRotation = rotation;
         while (remainingRotation > float.Epsilon){
@@ -60,6 +67,7 @@ public class GravSwitch : MonoBehaviour {
         changingGrav = false;
         currentDest = currentDest != GameMaster.normalGrav ? GameMaster.normalGrav : dest;
         GameMaster.upDirection = (-1)*Physics2D.gravity;
+        player.GetComponent<EdgeCollider2D>().enabled = true;
         yield break;
     }
 
