@@ -4,9 +4,11 @@ public class DoorLock : MonoBehaviour {
 
     private bool locked = true;
 
-    public void unlock(){
+    public bool unlock(){
+        if (!locked) return false;
         locked = false;
         GetComponent<Animator>().SetBool("Unlocked", true);
+        return true;
     }
 
     public void OnTriggerEnter2D(Collider2D c){
