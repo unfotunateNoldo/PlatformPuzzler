@@ -19,16 +19,17 @@ public class GrappleHook : Equipment {
 
     private void Start()
     {
-        for (int i = 0; i < path.Length; i++)
-        {
+        for (int i = 0; i < path.Length; i++) {
             path[i] = Instantiate(pathPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         }
+        HidePath();
     }
 
     private void Update() {
         if (Input.GetKey(fire)) {
             cTime += Time.deltaTime;
             if(cTime >= minTimeToPreciseGrapple) {
+                HidePath();
                 if (Input.GetKey(up))
                 {
                     rot -= rotspd;
@@ -53,19 +54,33 @@ public class GrappleHook : Equipment {
 
                     float mathystuff = ((hit.distance - ((hit.distance / 10) * i)) / Mathf.Sqrt((hit.point.x - transform.position.x) * (hit.point.x - transform.position.x) + (hit.point.y - transform.position.y) * (hit.point.y - transform.position.y)));
                     path[i].transform.position = new Vector3(transform.position.x + mathystuff * (hit.point.x - transform.position.x), transform.position.y + mathystuff * (hit.point.y - transform.position.y) - aimPathUp * upMult, 0);
+                    path[i].GetComponent<SpriteRenderer>().enabled = true;
                 }
 
                 if (hit.collider != null)
                 {
+                    target.GetComponent<SpriteRenderer>().enabled = true;
                     target.transform.position = hit.point;
+                } else {
+                    target.GetComponent<SpriteRenderer>().enabled = false;
                 }
             }
         }
         if (Input.GetKeyUp(fire)) {
             if (cTime < minTimeToPreciseGrapple) {
                 Debug.Log("Put Quick Grapple code here");
+            } else {
+                HidePath();
+                Debug.Log("Launch Code here");
             }
             cTime = 0;
+        }
+    }
+
+    private void HidePath() {
+        for (int i=0; i < path.Length; i++) {
+            path[i].GetComponent<SpriteRenderer>().enabled = false;
+            target.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 }

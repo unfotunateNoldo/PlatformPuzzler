@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -20,9 +19,11 @@ public class Inventory : MonoBehaviour
         if (instance != null)
         {
             Debug.LogWarning("More than once instance of inventory!");
-            return;
+            Destroy(this);
         }
-        instance = this;
+        else {
+            instance = this;
+        }
     }
 
     public bool AddItem(string key, GameObject item)

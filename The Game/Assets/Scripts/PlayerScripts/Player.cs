@@ -91,7 +91,7 @@ public class Player : MonoBehaviour {
     private void Move(float input) {
         horizontalVelocity = Vector3.Project(rb.velocity, GameMaster.rightDirection);
         if(input==0 && horizontalVelocity.sqrMagnitude != 0) {
-            CancelHorizontalVelocity();            
+            CancelHorizontalVelocity();
         } else {
             if (horizontalVelocity.normalized == GameMaster.rightDirection) {
                 if (input < 0) {
@@ -132,13 +132,17 @@ public class Player : MonoBehaviour {
     }
 
     private void Update() {
+        // controls are disabled if we are changing gravity
         if (GravSwitch.changingGrav) {
             return;
         }
+
+        //reduce invincibility frames
         if (invincibility > 0) {
             invincibility--;
         }
 
+        //set isFalling
         if(!Physics2D.OverlapCircle(footCircle.position, groundCheckRad, groundLayer)) {
             if (!isFalling) {
                 isFalling = true;
@@ -152,11 +156,17 @@ public class Player : MonoBehaviour {
                 animator.SetTrigger("JumpEnd");
             }
         }
+
+        //set ability to move left or right
         canMoveLeft = !leftCheck.collidingWithWall;
         canMoveRight = !rightCheck.collidingWithWall;
+
+        //check for end of jump
         if(!isFalling && animator.GetCurrentAnimatorStateInfo(0).IsName("Falling")) {
             animator.SetTrigger("JumpEnd");
         }
+
+        //detect jump input
         if (Input.GetButtonDown("Jump") && !isFalling) {
             StartCoroutine("Jump");
         }
