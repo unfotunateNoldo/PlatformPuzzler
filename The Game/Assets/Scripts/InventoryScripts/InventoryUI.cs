@@ -14,7 +14,7 @@ public class InventoryUI : MonoBehaviour
     {
         Inventory.instance.itemChangedCallback += UpdateUI;
 
-        foreach (Transform t in inventoryUI.transform.GetChild(0)) {
+        foreach (Transform t in inventoryUI.transform) {
             slots.Add(t);
         }
         Debug.Log("This many slots: " + slots.Count);
