@@ -92,7 +92,9 @@ public class Player : MonoBehaviour {
         horizontalVelocity = Vector3.Project(rb.velocity, GameMaster.rightDirection);
         if(input==0 && horizontalVelocity.sqrMagnitude != 0) {
             CancelHorizontalVelocity();
-        } else {
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("WalkCycle"))
+                animator.SetBool("Walking", false);
+        } else if (input!=0){
             if (horizontalVelocity.normalized == GameMaster.rightDirection) {
                 if (input < 0) {
                     CancelHorizontalVelocity();
@@ -114,6 +116,8 @@ public class Player : MonoBehaviour {
                     rb.AddForce(moveForce);
                 }
             }
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("WalkCycle"))
+                animator.SetBool("Walking", true);
         }
     }
 
