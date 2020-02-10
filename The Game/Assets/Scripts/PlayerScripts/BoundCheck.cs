@@ -1,25 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System;
 
 public class BoundCheck : MonoBehaviour {
-    public bool collidingWithWall = false;
+    public event Action collided;
+    public event Action exited;
 
     private void OnTriggerEnter2D(Collider2D other) {
         bool that = other.tag == "Environment";
         if(that) {
-            collidingWithWall = true;
+            collided();
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
         bool that = other.tag == "Environment";
         if (that) {
-            collidingWithWall = false;
+            exited();
         }
-    }
-
-    private void Update() {
-        // triggered = false;
     }
 }

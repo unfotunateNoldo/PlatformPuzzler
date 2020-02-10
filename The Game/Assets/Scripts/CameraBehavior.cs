@@ -11,7 +11,7 @@ public class CameraBehavior : MonoBehaviour {
     private bool doFollow = true;
 
     void Start(){
-        target = Player.player.transform;
+        target = Player.instance.transform;
     }
 
     // Update is called once per frame

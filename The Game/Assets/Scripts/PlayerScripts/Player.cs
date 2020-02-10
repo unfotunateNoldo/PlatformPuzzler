@@ -1,195 +1,89 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player : MonoBehaviour {
+    /*
+      Parent reference for the player
+      Manages and exposes all player properties
+      Including health and inventory
+    */
 
-    public static Player player = null;
+    public static Player instance = null;
 
-	public float speedMod = 0.2f;
-    public float speed = 1.0f;
-    private bool canMoveLeft = true;
-    private bool canMoveRight = true;
-    public BoundCheck leftCheck;
-    public BoundCheck rightCheck;
-    private Vector2 horizontalVelocity;
-
-    public int jumpFrameCount = 100;
-    public float jumpHeight = 1.0f;
-    private bool jumping = false;
-    
+    //life controls
     public int healthPoints = 100;
     public int invincibilityFrames = 100;
     private bool isAlive = true;
-
     private int invincibility = 0;
 
-    public Rigidbody2D rb;
-    public Animator animator;
-    public Transform footCircle;
-    public float groundCheckRad = 0.01f;
-    public LayerMask groundLayer;
-
     public CameraBehavior cameraBehavior;
+    public PlayerInputHandler inputHandler;
+    public PlayerCollisionHandler collisionHandler;
 
-    public bool isFalling;
-
-    private void OnTriggerEnter2D(Collider2D other) {
-        GameObject collided = other.gameObject;
-        switch (collided.tag) {
-            case "Key":
-                if (Inventory.instance.AddItem(collided.tag, collided)) {
-                    Destroy(collided);
-                }
-                break;
-            case "Door":
-                List<Sprite> items = Inventory.instance.GetItems("Key");
-                if (items != null && items.Count > 0) {
-                    if (collided.GetComponent<DoorLock>().unlock())
-                        Inventory.instance.RemoveItem("Key");
-                }
-                break;
-        }
-    }
-    private void OnCollisionEnter2D(Collision2D c) {
-        GameObject collided = c.gameObject;
-        switch (collided.tag) {
-            case "Enemy":
-                if (invincibility<=0) {
-                    healthPoints -= 20;
-                    invincibility = invincibilityFrames;
-                    Debug.Log("Player lost health");
-                }
-                if (healthPoints <= 0) {
-                    Debug.Log("player is dead, resetting health");
-                    healthPoints = 100;
-                    invincibility = 0;
-                }
-                break;
-        }
-    }
+    //certain exposed player events
+    public event Action onDamageTaken;
 
     // Intitialize component references and singleton
     void Awake () {
-        if (player == null)
-            player = this;
-        else if (player!=this)
+        if (instance == null)
+            instance = this;
+        else if (instance!=this)
             Destroy(gameObject);
-        DontDestroyOnLoad(player);
+        DontDestroyOnLoad(instance);
 
-        rb = GetComponent<Rigidbody2D> ();
-        animator = GetComponent<Animator>();
-        Face(true);
+        inputHandler = GetComponent<PlayerInputHandler>();
+        collisionHandler = GetComponent<PlayerCollisionHandler>();
+
+        collisionHandler.onEnemyHit += EnemyHandler;
+        collisionHandler.onInteractHit += InteractHandler;
+        collisionHandler.onPickupHit += PickupHandler;
 	}
 
-	void FixedUpdate () {
-        if (GravSwitch.changingGrav)
-            return;
-        Move(Input.GetAxisRaw("Horizontal"));
-    }
-
-    private void Move(float input) {
-        horizontalVelocity = Vector3.Project(rb.velocity, GameMaster.rightDirection);
-        if(input==0 && horizontalVelocity.sqrMagnitude != 0) {
-            CancelHorizontalVelocity();
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("WalkCycle"))
-                animator.SetBool("Walking", false);
-        } else if (input!=0){
-            if (horizontalVelocity.normalized == GameMaster.rightDirection) {
-                if (input < 0) {
-                    CancelHorizontalVelocity();
-                }
-            } else {
-                if(input > 0) {
-                    CancelHorizontalVelocity();
-                }
-            }
-            float m = horizontalVelocity.magnitude;
-            if (m < speed && MoveCheck(input)) {
-                Vector2 moveForce = GameMaster.rightDirection * input * speedMod;
-                if (m < 0.9 * speed) {
-                    rb.AddForce(moveForce * 10);
-                    if (m < 0.01) {
-                        Face(input > 0);
-                    }
-                } else {
-                    rb.AddForce(moveForce);
-                }
-            }
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("WalkCycle"))
-                animator.SetBool("Walking", true);
-        }
-    }
-
-    private void Face(bool right) {
-        GetComponent<SpriteRenderer>().flipX = right;
-        GetComponentInChildren<HandPositionController>().Face(right);
-    }
-
-    private void CancelHorizontalVelocity() {
-        rb.velocity = Vector3.Project(rb.velocity, GameMaster.upDirection);
-        horizontalVelocity = Vector2.zero;
-    }
-
-    private bool MoveCheck(float input) {
-        return input!=0 && (input>0 ? canMoveRight : canMoveLeft);
-    }
-
     private void Update() {
-        // controls are disabled if we are changing gravity
-        if (GravSwitch.changingGrav) {
-            return;
-        }
-
         //reduce invincibility frames
         if (invincibility > 0) {
             invincibility--;
         }
+    }
 
-        //set isFalling
-        if(!Physics2D.OverlapCircle(footCircle.position, groundCheckRad, groundLayer)) {
-            if (!isFalling) {
-                isFalling = true;
-                if (!jumping) {
-                    animator.SetTrigger("Fall");
-                }
+    private void EnemyHandler(GameObject enemy) {
+        if (invincibility <= 0) {
+            healthPoints -= 20;
+            invincibility = invincibilityFrames;
+            onDamageTaken();
+            Debug.Log("Player lost health");
+        }
+        if (healthPoints <= 0) {
+            Debug.Log("player is dead, resetting health");
+            healthPoints = 100;
+            invincibility = 0;
+        }
+    }
+
+    private void PickupHandler(GameObject pickup) {
+        //stopgap code: inventory needs slight redesign
+        if (pickup.GetComponent<Pickup>().pickupClass == Pickup.PickupClass.Key) {
+            if (Inventory.instance.AddItem("Key", pickup)) {
+                Destroy(pickup);
             }
         } else {
-            if (isFalling) {
-                isFalling = false;
-                animator.SetTrigger("JumpEnd");
-            }
-        }
-
-        //set ability to move left or right
-        canMoveLeft = !leftCheck.collidingWithWall;
-        canMoveRight = !rightCheck.collidingWithWall;
-
-        //check for end of jump
-        if(!isFalling && animator.GetCurrentAnimatorStateInfo(0).IsName("Falling")) {
-            animator.SetTrigger("JumpEnd");
-        }
-
-        //detect jump input
-        if (Input.GetButtonDown("Jump") && !isFalling) {
-            StartCoroutine("Jump");
+            throw new Exception("anioop the pickup class");
         }
     }
 
-    IEnumerator Jump(){
-        jumping = true;
-        animator.SetTrigger("JumpInit");
-        rb.AddForce(GameMaster.upDirection * jumpHeight, ForceMode2D.Impulse);
-        for(int i=0; i<jumpFrameCount; i++){
-            if (Input.GetKey(KeyCode.Space)) {
-                rb.AddForce(GameMaster.upDirection * jumpHeight * 2.4f);
-            } else {
-                break;
+    private void InteractHandler(GameObject interactable) {
+        //stopgap code
+        if (interactable.GetComponent<Interactable>().interactClass == Interactable.InteractClass.Door) {
+            List<Sprite> items = Inventory.instance.GetItems("Key");
+            if (items != null && items.Count > 0) {
+                if (interactable.GetComponent<DoorLock>().unlock())
+                    Inventory.instance.RemoveItem("Key");
             }
-            yield return null;
+        } else {
+            throw new Exception("the spaghetti has spaghettied @interactclass");
         }
-        animator.SetTrigger("JumpPeak");
-        jumping = false;
-        yield break;
     }
+
 }

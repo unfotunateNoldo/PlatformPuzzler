@@ -4,11 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Key
-  - Door
   - Enemy
   - Environment
-  - key2
+  - TransparentInteractable
+  - Pickup
+  - Door
   layers:
   - Default
   - TransparentFX

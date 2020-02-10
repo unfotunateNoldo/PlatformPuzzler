@@ -2,9 +2,8 @@
 using System.Linq;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
-{
-    // singleton
+public class Inventory : MonoBehaviour {
+
     public static Inventory instance;
 
     public int capacity = 20;
@@ -14,16 +13,13 @@ public class Inventory : MonoBehaviour
     public delegate void OnItemChanged();
     public OnItemChanged itemChangedCallback;
 
-    void Awake()
-    {
-        if (instance != null)
-        {
-            Debug.LogWarning("More than once instance of inventory!");
+    private void Awake() {
+        if(instance == null) {
+            instance = this;
+        } else if (instance != this){
             Destroy(this);
         }
-        else {
-            instance = this;
-        }
+        DontDestroyOnLoad(instance);
     }
 
     public bool AddItem(string key, GameObject item)
@@ -42,10 +38,10 @@ public class Inventory : MonoBehaviour
             items.Add(key, l);
         }
         if (itemChangedCallback != null) {
-            Debug.Log("INvoking callback!");
+            Debug.Log("Invoking callback!");
             itemChangedCallback.Invoke();
         } else {
-            Debug.Log("CALLBACK IS NULl!");
+            Debug.Log("CALLBACK IS NULL!");
         }
         Debug.Log("ADDING ITEM AT " + Time.time);
         return true;
